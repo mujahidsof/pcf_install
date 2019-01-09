@@ -1,0 +1,29 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: pcfnorm/rootfs
+    tag: 1.0.28
+inputs:
+  - name: pcf-pipelines
+params:
+  OPSMAN_DOMAIN_OR_IP_ADDRESS:
+  OPSMAN_USER:
+  OPSMAN_PASSWORD:
+  AWS_KEY_NAME:
+  PEM:
+  AWS_REGION:
+  S3_ENDPOINT:
+  TRUSTED_CERTIFICATES:
+  pas_subnet_reserved_ranges_z1:
+  pas_subnet_reserved_ranges_z2:
+  pas_subnet_reserved_ranges_z3:
+  services_subnet_reserved_ranges_z1:
+  services_subnet_reserved_ranges_z2:
+  service_subnet_reserved_ranges_z3:
+  management_services_subnet_reserved_ranges_z1:
+  management_services_subnet_reserved_ranges_z2:
+  management_services_subnet_reserved_ranges_z3:
+run:
+  path: pcf-install-pcf/tasks/task.sh
