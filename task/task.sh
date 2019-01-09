@@ -1,16 +1,7 @@
+
 #!/bin/bash
 
 set -eu
-
-aws_access_key_id=`terraform state show -state terraform-state/terraform.tfstate aws_iam_access_key.pcf_iam_user_access_key | grep ^id | awk '{print $3}'`
-aws_secret_access_key=`terraform state show -state terraform-state/terraform.tfstate aws_iam_access_key.pcf_iam_user_access_key | grep ^secret | awk '{print $3}'`
-rds_password=`terraform state show -state terraform-state/terraform.tfstate aws_db_instance.pcf_rds | grep ^password | awk '{print $3}'`
-
-while read -r line
-do
-  `echo "$line" | awk '{print "export "$1"="$3}'`
-done < <(terraform output -state terraform-state/terraform.tfstate)
-
 
 set +e
 read -r -d '' iaas_configuration <<EOF
@@ -20,7 +11,7 @@ read -r -d '' iaas_configuration <<EOF
   "vpc_id": "$vpc_id",
   "security_group": "$pcf_security_group",
   "key_pair_name": "$AWS_KEY_NAME",
-  "ssh_private_key": "",
+  "ssh_private_key": "$key_pair_",
   "region": "$AWS_REGION",
   "encrypted": false
 }
@@ -41,7 +32,7 @@ read -r -d '' director_configuration <<EOF
   },
   "blobstore_type": "s3",
   "s3_blobstore_options": {
-    "endpoint": "$S3_ENDPOINT",
+    "endpoint": "$https://s3.amazonaws.com",
     "bucket_name": "$s3_pcf_bosh",
     "access_key": "$aws_access_key_id",
     "secret_key": "$aws_secret_access_key",
@@ -75,52 +66,68 @@ read -r -d '' networks_configuration <<EOF
   "icmp_checks_enabled": false,
   "networks": [
     {
-      "name": "deployment",
+      "name": "pcf-management-network",
       "service_network": false,
       "subnets": [
         {
-          "iaas_identifier": "$ert_subnet_id_az1",
-          "cidr": "$ert_subnet_cidr_az1",
-          "reserved_ip_ranges": "$ert_subnet_reserved_ranges_z1",
+          "iaas_identifier": "$management_subnet_id_az1",
+          "cidr": "$management_subnet_cidr_az1",
+          "reserved_ip_ranges": "$management_subnet_reserved_ranges_z1",
           "dns": "$dns",
-          "gateway": "$ert_subnet_gw_az1",
+          "gateway": "$management_subnet_gw_az1",
           "availability_zone_names": ["$az1"]
         },
         {
-          "iaas_identifier": "$ert_subnet_id_az2",
-          "cidr": "$ert_subnet_cidr_az2",
-          "reserved_ip_ranges": "$ert_subnet_reserved_ranges_z2",
+          "iaas_identifier": "$management_subnet_id_az2",
+          "cidr": "$management_subnet_cidr_az2",
+          "reserved_ip_ranges": "$management_subnet_reserved_ranges_z2",
           "dns": "$dns",
-          "gateway": "$ert_subnet_gw_az2",
+          "gateway": "$management_subnet_gw_az2",
           "availability_zone_names": ["$az2"]
         },
         {
-          "iaas_identifier": "$ert_subnet_id_az3",
+          "iaas_identifier": "$management_subnet_id_az3",
           "cidr": "$ert_subnet_cidr_az3",
-          "reserved_ip_ranges": "$ert_subnet_reserved_ranges_z3",
+          "reserved_ip_ranges": "$management_subnet_reserved_ranges_z3",
           "dns": "$dns",
-          "gateway": "$ert_subnet_gw_az3",
+          "gateway": "$management_subnet_gw_az3",
           "availability_zone_names": ["$az3"]
         }
       ]
     },
     {
-      "name": "infrastructure",
+      "name": "pcf-pas-network",
       "service_network": false,
       "subnets": [
         {
-          "iaas_identifier": "$infra_subnet_id_az1",
-          "cidr": "$infra_subnet_cidr_az1",
-          "reserved_ip_ranges": "$infra_subnet_reserved_ranges_z1",
+          "iaas_identifier": "$pas_subnet_id_az1",
+          "cidr": "$pas_subnet_cidr_az1",
+          "reserved_ip_ranges": "$pas_subnet_reserved_ranges_z1",
           "dns": "$dns",
-          "gateway": "$infra_subnet_gw_az1",
+          "gateway": "$pas_subnet_gw_az1",
           "availability_zone_names": ["$az1"]
+        },
+        {
+          "iaas_identifier": "$pas_subnet_id_az2",
+          "cidr": "$pas_subnet_cidr_az2",
+          "reserved_ip_ranges": "$pas_subnet_reserved_ranges_z2",
+          "dns": "$dns",
+          "gateway": "$pas_subnet_gw_az2",
+          "availability_zone_names": ["$az2"]
+        },
+        {
+          "iaas_identifier": "$pas_subnet_id_az3",
+          "cidr": "$pas_subnet_cidr_az3",
+          "reserved_ip_ranges": "$pas_subnet_reserved_ranges_z3",
+          "dns": "$dns",
+          "gateway": "$pas_subnet_gw_az3",
+          "availability_zone_names": ["$az3"]
         }
       ]
     },
     {
-      "name": "services",
-      "service_network": false,
+      "name": "pcf-services-network",
+      "service_network": true,
       "subnets": [
         {
           "iaas_identifier": "$services_subnet_id_az1",
@@ -135,45 +142,15 @@ read -r -d '' networks_configuration <<EOF
           "cidr": "$services_subnet_cidr_az2",
           "reserved_ip_ranges": "$services_subnet_reserved_ranges_z2",
           "dns": "$dns",
-          "gateway": "$services_subnet_gw_az2",
+          "gateway": "$subnet_gw_az2",
           "availability_zone_names": ["$az2"]
         },
         {
           "iaas_identifier": "$services_subnet_id_az3",
-          "cidr": "$services_subnet_cidr_az3",
+          "cidr": "$dynamic_services_subnet_cidr_az3",
           "reserved_ip_ranges": "$services_subnet_reserved_ranges_z3",
           "dns": "$dns",
           "gateway": "$services_subnet_gw_az3",
-          "availability_zone_names": ["$az3"]
-        }
-      ]
-    },
-    {
-      "name": "dynamic-services",
-      "service_network": true,
-      "subnets": [
-        {
-          "iaas_identifier": "$dynamic_services_subnet_id_az1",
-          "cidr": "$dynamic_services_subnet_cidr_az1",
-          "reserved_ip_ranges": "$dynamic_services_subnet_reserved_ranges_z1",
-          "dns": "$dns",
-          "gateway": "$dynamic_services_subnet_gw_az1",
-          "availability_zone_names": ["$az1"]
-        },
-        {
-          "iaas_identifier": "$dynamic_services_subnet_id_az2",
-          "cidr": "$dynamic_services_subnet_cidr_az2",
-          "reserved_ip_ranges": "$dynamic_services_subnet_reserved_ranges_z2",
-          "dns": "$dns",
-          "gateway": "$dynamic_services_subnet_gw_az2",
-          "availability_zone_names": ["$az2"]
-        },
-        {
-          "iaas_identifier": "$dynamic_services_subnet_id_az3",
-          "cidr": "$dynamic_services_subnet_cidr_az3",
-          "reserved_ip_ranges": "$dynamic_services_subnet_reserved_ranges_z3",
-          "dns": "$dns",
-          "gateway": "$dynamic_services_subnet_gw_az3",
           "availability_zone_names": ["$az3"]
         }
       ]
@@ -188,7 +165,7 @@ read -r -d '' network_assignment <<EOF
     "name": "$az1"
    },
   "network": {
-    "name": "infrastructure"
+    "name": "pcf-management-network"
   }
 }
 EOF
