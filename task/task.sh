@@ -140,7 +140,7 @@ read -r -d '' networks_configuration <<EOF
           "cidr": "$services_subnet_cidr_z2",
           "reserved_ip_ranges": "$services_subnet_reserved_ranges_z2",
           "dns": "$dns",
-          "gateway": "$subnet_gw_z2",
+          "gateway": "$services_subnet_gw_z2",
           "availability_zone_names": ["$az2"]
         },
         {
