@@ -63,7 +63,7 @@ jobs:
       management_subnet_id_z2: {{management_subnet_id_z2}}
       management_subnet_id_z3: {{management_subnet_id_z3}}
       management_subnet_cidr_z1: {{management_subnet_cidr_z1}}
-      management_subnet_cidr_z1: {{management_subnet_cidr_z3}}
+      management_subnet_cidr_z2: {{management_subnet_cidr_z2}}
       management_subnet_cidr_z3: {{management_subnet_cidr_z3}}
       management_subnet_gw_z1: {{management_subnet_gw_z1}}
       management_subnet_gw_z2: {{management_subnet_gw_z2}}

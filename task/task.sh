@@ -1,6 +1,7 @@
 
 #!/bin/bash
-
+set -eu
+set +e
 read -r -d '' iaas_configuration <<EOF
 {
   "access_key_id": "$aws_access_key_id",
@@ -29,7 +30,7 @@ read -r -d '' director_configuration <<EOF
   },
   "blobstore_type": "s3",
   "s3_blobstore_options": {
-    "endpoint": "$https://s3.amazonaws.com",
+    "endpoint": "https://s3.amazonaws.com",
     "bucket_name": "$s3_pcf_bosh",
     "access_key": "$aws_access_key_id",
     "secret_key": "$aws_secret_access_key",
