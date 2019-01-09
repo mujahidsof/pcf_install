@@ -9,7 +9,7 @@ read -r -d '' iaas_configuration <<EOF
   "vpc_id": "$vpc_id",
   "security_group": "$pcf_security_group",
   "key_pair_name": "$AWS_KEY_NAME",
-  "ssh_private_key": "$key_pair",
+  "ssh_private_key": "",
   "region": "$AWS_REGION",
   "encrypted": false
 }
