@@ -9,10 +9,13 @@ resources:
 - name: pcf-install
   type: git
   source:
-    uri: git@github.com:mujahidsof/pcf_install.git
     branch: master
+    uri: git@github.com:mujahidsof/pcf_install.git
+    private_key: {{GIT_PEM}}
 jobs:
-  - name: configure-director
+- name: configure-director
+  plan:
+  - get: pcf-install
   - task: configure-director
     file: pcf-install/tasks/task.yml
     params:
