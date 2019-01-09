@@ -145,7 +145,7 @@ read -r -d '' networks_configuration <<EOF
         },
         {
           "iaas_identifier": "$services_subnet_id_z3",
-          "cidr": "$dynamic_services_subnet_cidr_z3",
+          "cidr": "$services_subnet_cidr_z3",
           "reserved_ip_ranges": "$services_subnet_reserved_ranges_z3",
           "dns": "$dns",
           "gateway": "$services_subnet_gw_z3",
