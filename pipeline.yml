@@ -43,7 +43,7 @@ jobs:
       TRUSTED_CERTIFICATES: {{director_certificates}}
       management_subnet_reserved_ranges_z1: {{management_subnet_reserved_ranges_z1}}
       management_subnet_reserved_ranges_z2: {{management_subnet_reserved_ranges_z2}}
-      management_services_subnet_reserved_ranges_z3: {{management_subnet_reserved_ranges_z3}}
+      management_subnet_reserved_ranges_z3: {{management_subnet_reserved_ranges_z3}}
       pas_subnet_reserved_ranges_z1: {{pas_subnet_reserved_ranges_z1}}
       pas_subnet_reserved_ranges_z2: {{pas_subnet_reserved_ranges_z2}}
       pas_subnet_reserved_ranges_z3: {{pas_subnet_reserved_ranges_z3}}
