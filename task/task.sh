@@ -67,27 +67,27 @@ read -r -d '' networks_configuration <<EOF
       "service_network": false,
       "subnets": [
         {
-          "iaas_identifier": "$management_subnet_id_az1",
-          "cidr": "$management_subnet_cidr_az1",
+          "iaas_identifier": "$management_subnet_id_z1",
+          "cidr": "$management_subnet_cidr_z1",
           "reserved_ip_ranges": "$management_subnet_reserved_ranges_z1",
           "dns": "$dns",
-          "gateway": "$management_subnet_gw_az1",
+          "gateway": "$management_subnet_gw_z1",
           "availability_zone_names": ["$az1"]
         },
         {
-          "iaas_identifier": "$management_subnet_id_az2",
-          "cidr": "$management_subnet_cidr_az2",
+          "iaas_identifier": "$management_subnet_id_z2",
+          "cidr": "$management_subnet_cidr_z2",
           "reserved_ip_ranges": "$management_subnet_reserved_ranges_z2",
           "dns": "$dns",
-          "gateway": "$management_subnet_gw_az2",
+          "gateway": "$management_subnet_gw_z2",
           "availability_zone_names": ["$az2"]
         },
         {
-          "iaas_identifier": "$management_subnet_id_az3",
-          "cidr": "$ert_subnet_cidr_az3",
+          "iaas_identifier": "$management_subnet_id_z3",
+          "cidr": "$ert_subnet_cidr_z3",
           "reserved_ip_ranges": "$management_subnet_reserved_ranges_z3",
           "dns": "$dns",
-          "gateway": "$management_subnet_gw_az3",
+          "gateway": "$management_subnet_gw_z3",
           "availability_zone_names": ["$az3"]
         }
       ]
@@ -97,27 +97,27 @@ read -r -d '' networks_configuration <<EOF
       "service_network": false,
       "subnets": [
         {
-          "iaas_identifier": "$pas_subnet_id_az1",
+          "iaas_identifier": "$pas_subnet_id_z1",
           "cidr": "$pas_subnet_cidr_az1",
           "reserved_ip_ranges": "$pas_subnet_reserved_ranges_z1",
           "dns": "$dns",
-          "gateway": "$pas_subnet_gw_az1",
+          "gateway": "$pas_subnet_gw_z1",
           "availability_zone_names": ["$az1"]
         },
         {
-          "iaas_identifier": "$pas_subnet_id_az2",
+          "iaas_identifier": "$pas_subnet_id_z2",
           "cidr": "$pas_subnet_cidr_az2",
           "reserved_ip_ranges": "$pas_subnet_reserved_ranges_z2",
           "dns": "$dns",
-          "gateway": "$pas_subnet_gw_az2",
+          "gateway": "$pas_subnet_gw_z2",
           "availability_zone_names": ["$az2"]
         },
         {
-          "iaas_identifier": "$pas_subnet_id_az3",
-          "cidr": "$pas_subnet_cidr_az3",
+          "iaas_identifier": "$pas_subnet_id_z3",
+          "cidr": "$pas_subnet_cidr_z3",
           "reserved_ip_ranges": "$pas_subnet_reserved_ranges_z3",
           "dns": "$dns",
-          "gateway": "$pas_subnet_gw_az3",
+          "gateway": "$pas_subnet_gw_z3",
           "availability_zone_names": ["$az3"]
         }
       ]
@@ -127,27 +127,27 @@ read -r -d '' networks_configuration <<EOF
       "service_network": true,
       "subnets": [
         {
-          "iaas_identifier": "$services_subnet_id_az1",
+          "iaas_identifier": "$services_subnet_id_z1",
           "cidr": "$services_subnet_cidr_az1",
           "reserved_ip_ranges": "$services_subnet_reserved_ranges_z1",
           "dns": "$dns",
-          "gateway": "$services_subnet_gw_az1",
+          "gateway": "$services_subnet_gw_z1",
           "availability_zone_names": ["$az1"]
         },
         {
-          "iaas_identifier": "$services_subnet_id_az2",
-          "cidr": "$services_subnet_cidr_az2",
+          "iaas_identifier": "$services_subnet_id_z2",
+          "cidr": "$services_subnet_cidr_z2",
           "reserved_ip_ranges": "$services_subnet_reserved_ranges_z2",
           "dns": "$dns",
-          "gateway": "$subnet_gw_az2",
+          "gateway": "$subnet_gw_z2",
           "availability_zone_names": ["$az2"]
         },
         {
-          "iaas_identifier": "$services_subnet_id_az3",
-          "cidr": "$dynamic_services_subnet_cidr_az3",
+          "iaas_identifier": "$services_subnet_id_z3",
+          "cidr": "$dynamic_services_subnet_cidr_z3",
           "reserved_ip_ranges": "$services_subnet_reserved_ranges_z3",
           "dns": "$dns",
-          "gateway": "$services_subnet_gw_az3",
+          "gateway": "$services_subnet_gw_z3",
           "availability_zone_names": ["$az3"]
         }
       ]
