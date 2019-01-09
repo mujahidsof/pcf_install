@@ -28,6 +28,7 @@ jobs:
       rds_password: {{rds_password}}
       db_database: {{db_database}}
       s3_pcf_bosh: {{s3_pcf_bosh}}
+      pcf_security_group: {{pcf_security_group}}
       TRUSTED_CERTIFICATES: {{director_certificates}}
       management_subnet_reserved_ranges_z1: {{management_subnet_reserved_ranges_z1}}
       management_subnet_reserved_ranges_z2: {{management_subnet_reserved_ranges_z2}}
