@@ -30,7 +30,6 @@ jobs:
       AWS_KEY_NAME: {{AWS_KEY_NAME}}
       vpc_id: ""
       pcf_security_group: {{pcf_security_group}}
-      key_pair: {{PEM}}
       PEM: {{PEM}}
       AWS_REGION: {{aws_region}}
       S3_ENDPOINT: {{S3_ENDPOINT}}
@@ -54,7 +53,7 @@ jobs:
       services_subnet_id_z2: {{services_subnet_id_z2}}
       services_subnet_id_z3: {{services_subnet_id_z1}}
       services_subnet_cidr_z1: {{services_subnet_cidr_z1}}
-      services_subnet_cidr_z3: {{services_subnet_cidr_z2}}
+      services_subnet_cidr_z2: {{services_subnet_cidr_z2}}
       services_subnet_cidr_z3: {{services_subnet_cidr_z3}}
       services_subnet_gw_z1: {{services_subnet_gw_z1}}
       services_subnet_gw_z2: {{services_subnet_gw_z2}}
