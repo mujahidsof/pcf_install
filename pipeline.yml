@@ -22,7 +22,11 @@ jobs:
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_domain_or_ip_address}}
       OPSMAN_USER: {{opsman_admin_username}}
       OPSMAN_PASSWORD: {{opsman_admin_password}}
+      aws_access_key_id: {{aws_access_key_id}}
+      aws_secret_access_key: {{aws_secret_access_key}}
       AWS_KEY_NAME: {{AWS_KEY_NAME}}
+      pcf_security_group: {{pcf_security_group}}
+      key_pair: {{PEM}}}}
       PEM: {{PEM}}
       AWS_REGION: {{aws_region}}
       S3_ENDPOINT: {{S3_ENDPOINT}}
@@ -42,3 +46,31 @@ jobs:
       services_subnet_reserved_ranges_z1: {{services_subnet_reserved_ranges_z1}}
       services_subnet_reserved_ranges_z2: {{services_subnet_reserved_ranges_z2}}
       services_subnet_reserved_ranges_z3: {{services_subnet_reserved_ranges_z3}}
+      services_subnet_id_z1: {{services_subnet_id_z1}}
+      services_subnet_id_z2: {{services_subnet_id_z2}}
+      services_subnet_id_z3: {{services_subnet_id_z1}}
+      services_subnet_cidr_z1: {{services_subnet_cidr_z1}}
+      services_subnet_cidr_z3: {{services_subnet_cidr_z2}}
+      services_subnet_cidr_z3: {{services_subnet_cidr_z3}}
+      services_subnet_gw_z1: {{services_subnet_gw_z1}}
+      services_subnet_gw_z2: {{services_subnet_gw_z2}}
+      services_subnet_gw_z3: {{services_subnet_gw_z3}}
+      management_subnet_id_z1: {{management_subnet_id_z1}}
+      management_subnet_id_z2: {{management_subnet_id_z2}}
+      management_subnet_id_z3: {{management_subnet_id_z3}}
+      management_subnet_cidr_z1: {{management_subnet_cidr_z1}}
+      management_subnet_cidr_z1: {{management_subnet_cidr_z3}}
+      management_subnet_cidr_z3: {{management_subnet_cidr_z3}}
+      management_subnet_gw_z1: {{management_subnet_gw_z1}}
+      management_subnet_gw_z2: {{management_subnet_gw_z2}}
+      management_subnet_gw_z3: {{management_subnet_gw_z3}}
+      pas_subnet_id_z1: {{pas_subnet_id_z1}}
+      pas_subnet_id_z2: {{pas_subnet_id_z2}}
+      pas_subnet_id_z3: {{pas_subnet_id_z3}}
+      pas_subnet_cidr_z1: {{pas_subnet_cidr_z1}}
+      pas_subnet_cidr_z2: {{pas_subnet_cidr_z2}}
+      pas_subnet_cidr_z3: {{pas_subnet_cidr_z3}}
+      pas_subnet_gw_z1: {{pas_subnet_gw_z1}}
+      pas_subnet_gw_z2: {{pas_subnet_gw_z2}}
+      pas_subnet_gw_z3: {{pas_subnet_gw_z3}}
+      dns: {{dns}}

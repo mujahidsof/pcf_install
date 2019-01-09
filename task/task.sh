@@ -1,8 +1,6 @@
 
 #!/bin/bash
 
-
-set +e
 read -r -d '' iaas_configuration <<EOF
 {
   "access_key_id": "$aws_access_key_id",
@@ -10,7 +8,7 @@ read -r -d '' iaas_configuration <<EOF
   "vpc_id": "$vpc_id",
   "security_group": "$pcf_security_group",
   "key_pair_name": "$AWS_KEY_NAME",
-  "ssh_private_key": "$key_pair_",
+  "ssh_private_key": "$key_pair",
   "region": "$AWS_REGION",
   "encrypted": false
 }
