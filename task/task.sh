@@ -176,7 +176,7 @@ read -r -d '' security_configuration <<EOF
 EOF
 set -e
 
-iaas_configuration=$(echo "$iaas_configuration" |jq --arg ssh_private_key "$PEM" '.ssh_private_key = $ssh_private_key')
+#iaas_configuration=$(echo "$iaas_configuration" |jq --arg ssh_private_key "$PEM" '.ssh_private_key = $ssh_private_key')
 
 security_configuration=$(
   echo "$security_configuration" |
