@@ -107,7 +107,7 @@ read -r -d '' networks_configuration <<EOF
         },
         {
           "iaas_identifier": "$pas_subnet_id_z2",
-          "cidr": "$pas_subnet_cidr_az2",
+          "cidr": "$pas_subnet_cidr_z2",
           "reserved_ip_ranges": "$pas_subnet_reserved_ranges_z2",
           "dns": "$dns",
           "gateway": "$pas_subnet_gw_z2",
@@ -129,7 +129,7 @@ read -r -d '' networks_configuration <<EOF
       "subnets": [
         {
           "iaas_identifier": "$services_subnet_id_z1",
-          "cidr": "$services_subnet_cidr_az1",
+          "cidr": "$services_subnet_cidr_z1",
           "reserved_ip_ranges": "$services_subnet_reserved_ranges_z1",
           "dns": "$dns",
           "gateway": "$services_subnet_gw_z1",
