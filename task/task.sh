@@ -1,7 +1,4 @@
 
-#!/bin/bash
-
-
 set +e
 read -r -d '' iaas_configuration <<EOF
 {
