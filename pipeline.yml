@@ -17,7 +17,7 @@ jobs:
   plan:
   - get: pcf-install
   - task: configure-director
-    file: pcf-install/tasks/task.yml
+    file: pcf-install/task/task.yml
     params:
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_domain_or_ip_address}}
       OPSMAN_USER: {{opsman_admin_username}}
