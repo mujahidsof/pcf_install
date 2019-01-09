@@ -99,7 +99,7 @@ read -r -d '' networks_configuration <<EOF
       "subnets": [
         {
           "iaas_identifier": "$pas_subnet_id_z1",
-          "cidr": "$pas_subnet_cidr_az1",
+          "cidr": "$pas_subnet_cidr_z1",
           "reserved_ip_ranges": "$pas_subnet_reserved_ranges_z1",
           "dns": "$dns",
           "gateway": "$pas_subnet_gw_z1",
