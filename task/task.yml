@@ -15,15 +15,22 @@ params:
   PEM:
   AWS_REGION:
   S3_ENDPOINT:
+  db_host:
+  db_username:
+  rds_password:
+  db_database:
+  s3_pcf_bosh:
+  pcf_security_group:
   TRUSTED_CERTIFICATES:
+  management_subnet_reserved_ranges_z1:
+  management_subnet_reserved_ranges_z2:
+  management_services_subnet_reserved_ranges_z3:
   pas_subnet_reserved_ranges_z1:
   pas_subnet_reserved_ranges_z2:
   pas_subnet_reserved_ranges_z3:
   services_subnet_reserved_ranges_z1:
   services_subnet_reserved_ranges_z2:
-  service_subnet_reserved_ranges_z3:
-  management_subnet_reserved_ranges_z1:
-  management_subnet_reserved_ranges_z2:
-  management_subnet_reserved_ranges_z3:
+  services_subnet_reserved_ranges_z3:
+
 run:
   path: pcf-install-pcf/tasks/task.sh
