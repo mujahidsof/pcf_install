@@ -1,5 +1,3 @@
-
-#!/bin/bash
 set -eu
 set +e
 read -r -d '' iaas_configuration <<EOF
