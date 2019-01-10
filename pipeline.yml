@@ -13,6 +13,9 @@ resources:
     private_key: {{GIT_PEM}}
 jobs:
 - name: config-opsman-auth
+  serial_groups: [opsman]
+  plan:
+  - get: pcf-install
   - task: config-opsman-auth
     file: pcf-pipelines/tasks/config-opsman/task.yml
     params:
@@ -21,6 +24,7 @@ jobs:
       OPS_MGR_PWD: {{opsman_admin_password}}
       OM_DECRYPTION_PWD: {{opsman_admin_password}}
 - name: configure-director
+  serial_groups: [opsman]
   plan:
   - get: pcf-install
   - task: configure-director
@@ -87,11 +91,7 @@ jobs:
 - name: deploy-director
   serial_groups: [opsman]
   plan:
-  - aggregate:
-    - get: pcf-pipelines
-    - get: terraform-state
-      trigger: true
-      passed: [configure-director]
+  - get: pcf-install
   - task: deploy-director
     file: pcf-install/apply-changes/task.yml
     params:
