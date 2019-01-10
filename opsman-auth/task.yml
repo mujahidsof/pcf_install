@@ -15,4 +15,4 @@ inputs:
   - name: pcf-install
 
 run:
-  path: pcf-pipelines/opsman-auth/task/task.sh
+  path: pcf-install/opsman-auth/task.sh
