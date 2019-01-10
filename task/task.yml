@@ -21,14 +21,55 @@ params:
   s3_pcf_bosh:
   pcf_security_group:
   TRUSTED_CERTIFICATES:
+  OPSMAN_DOMAIN_OR_IP_ADDRESS:
+  OPSMAN_USER:
+  OPSMAN_PASSWORD:
+  az1:
+  az2:
+  az3:
+  aws_access_key_id:
+  aws_secret_access_key:
+  AWS_KEY_NAME:
+  vpc_id:
+  pcf_security_group:
+  PEM:
+  AWS_REGION:
   management_subnet_reserved_ranges_z1:
   management_subnet_reserved_ranges_z2:
-  management_services_subnet_reserved_ranges_z3:
+  management_subnet_reserved_ranges_z3:
   pas_subnet_reserved_ranges_z1:
   pas_subnet_reserved_ranges_z2:
   pas_subnet_reserved_ranges_z3:
   services_subnet_reserved_ranges_z1:
   services_subnet_reserved_ranges_z2:
   services_subnet_reserved_ranges_z3:
+  services_subnet_id_z1:
+  services_subnet_id_z2:
+  services_subnet_id_z3:
+  services_subnet_cidr_z1:
+  services_subnet_cidr_z2:
+  services_subnet_cidr_z3:
+  services_subnet_gw_z1:
+  services_subnet_gw_z2:
+  services_subnet_gw_z3:
+  management_subnet_id_z1:
+  management_subnet_id_z2:
+  management_subnet_id_z3:
+  management_subnet_cidr_z1:
+  management_subnet_cidr_z2:
+  management_subnet_cidr_z3:
+  management_subnet_gw_z1:
+  management_subnet_gw_z2:
+  management_subnet_gw_z3:
+  pas_subnet_id_z1:
+  pas_subnet_id_z2:
+  pas_subnet_id_z3:
+  pas_subnet_cidr_z1:
+  pas_subnet_cidr_z2:
+  pas_subnet_cidr_z3:
+  pas_subnet_gw_z1:
+  pas_subnet_gw_z2:
+  pas_subnet_gw_z3:
+  dns:
 run:
   path: pcf-install/task/task.sh
