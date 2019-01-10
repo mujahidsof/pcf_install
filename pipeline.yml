@@ -12,21 +12,16 @@ resources:
     uri: git@github.com:mujahidsof/pcf_install.git
     private_key: {{GIT_PEM}}
 jobs:
-- name: config-opsman-auth
-  serial_groups: [opsman]
+- name: config-opsman-director
   plan:
   - get: pcf-install
   - task: config-opsman-auth
-    file: pcf-pipelines/tasks/config-opsman/task.yml
+    file: pcf-install/opsman-auth/task.yml
     params:
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_domain_or_ip_address}}
       OPS_MGR_USR: {{opsman_admin_username}}
       OPS_MGR_PWD: {{opsman_admin_password}}
       OM_DECRYPTION_PWD: {{opsman_admin_password}}
-- name: configure-director
-  serial_groups: [opsman]
-  plan:
-  - get: pcf-install
   - task: configure-director
     file: pcf-install/task/task.yml
     params:
