@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -eu
-set +e
 read -r -d '' iaas_configuration <<EOF
 {
   "access_key_id": "$aws_access_key_id",
