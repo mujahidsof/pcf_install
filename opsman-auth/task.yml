@@ -1,0 +1,18 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: pcfnorm/rootfs
+
+params:
+  OPSMAN_DOMAIN_OR_IP_ADDRESS:
+  OPS_MGR_USR:
+  OPS_MGR_PWD:
+  OM_DECRYPTION_PWD:
+
+inputs:
+  - name: pcf-install
+
+run:
+  path: pcf-pipelines/opsman-auth/task/task.sh

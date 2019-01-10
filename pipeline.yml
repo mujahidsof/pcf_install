@@ -4,7 +4,6 @@ resource_types:
   source:
     repository: pivotalcf/pivnet-resource
     tag: latest-final
-
 resources:
 - name: pcf-install
   type: git
@@ -13,6 +12,14 @@ resources:
     uri: git@github.com:mujahidsof/pcf_install.git
     private_key: {{GIT_PEM}}
 jobs:
+- name: config-opsman-auth
+  - task: config-opsman-auth
+    file: pcf-pipelines/tasks/config-opsman/task.yml
+    params:
+      OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_domain_or_ip_address}}
+      OPS_MGR_USR: {{opsman_admin_username}}
+      OPS_MGR_PWD: {{opsman_admin_password}}
+      OM_DECRYPTION_PWD: {{opsman_admin_password}}
 - name: configure-director
   plan:
   - get: pcf-install
@@ -77,3 +84,19 @@ jobs:
       pas_subnet_gw_z2: {{pas_subnet_gw_z2}}
       pas_subnet_gw_z3: {{pas_subnet_gw_z3}}
       dns: {{dns}}
+- name: deploy-director
+  serial_groups: [opsman]
+  plan:
+  - aggregate:
+    - get: pcf-pipelines
+    - get: terraform-state
+      trigger: true
+      passed: [configure-director]
+  - task: deploy-director
+    file: pcf-install/apply-changes/task.yml
+    params:
+      OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_domain_or_ip_address}}
+      OPSMAN_CLIENT_ID: ""
+      OPSMAN_CLIENT_SECRET: ""
+      OPSMAN_USERNAME: {{opsman_admin_username}}
+      OPSMAN_PASSWORD: {{opsman_admin_password}}
