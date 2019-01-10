@@ -1,6 +1,5 @@
 ---
 platform: linux
-
 image_resource:
   type: docker-image
   source:
@@ -31,6 +30,5 @@ params:
   services_subnet_reserved_ranges_z1:
   services_subnet_reserved_ranges_z2:
   services_subnet_reserved_ranges_z3:
-
 run:
   path: pcf-install/task/task.sh
