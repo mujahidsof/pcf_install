@@ -12,7 +12,7 @@ params:
   OM_DECRYPTION_PWD:
 
 inputs:
-  - name: pcf-install
+  - name: bit-bucket
 
 run:
-  path: pcf-install/opsman-auth/task.sh
+  path: bit-bucket/opsman-auth/task.sh

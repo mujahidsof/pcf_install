@@ -5,7 +5,7 @@ image_resource:
   source:
     repository: pcfnorm/rootfs
 inputs:
-  - name: pcf-install
+  - name: bit-bucket
 params:
   OPSMAN_DOMAIN_OR_IP_ADDRESS:
   OPSMAN_USER:
@@ -72,4 +72,4 @@ params:
   pas_subnet_gw_z3:
   dns:
 run:
-  path: pcf-install/task/task.sh
+  path: bit-bucket/task/task.sh

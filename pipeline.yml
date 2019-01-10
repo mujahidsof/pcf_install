@@ -5,7 +5,7 @@ resource_types:
     repository: pivotalcf/pivnet-resource
     tag: latest-final
 resources:
-- name: pcf-install
+- name: bit-bucket
   type: git
   source:
     branch: master
@@ -14,16 +14,16 @@ resources:
 jobs:
 - name: config-opsman-director
   plan:
-  - get: pcf-install
+  - get: bit-bucket
   - task: config-opsman-auth
-    file: pcf-install/opsman-auth/task.yml
+    file: bit-bucket/opsman-auth/task.yml
     params:
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_domain_or_ip_address}}
       OPS_MGR_USR: {{opsman_admin_username}}
       OPS_MGR_PWD: {{opsman_admin_password}}
       OM_DECRYPTION_PWD: {{opsman_admin_password}}
   - task: configure-director
-    file: pcf-install/task/task.yml
+    file: bit-bucket/task/task.yml
     params:
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_domain_or_ip_address}}
       OPSMAN_USER: {{opsman_admin_username}}
@@ -84,11 +84,11 @@ jobs:
       pas_subnet_gw_z3: {{pas_subnet_gw_z3}}
       dns: {{dns}}
 - name: deploy-director
-  serial_groups: [opsman]
   plan:
-  - get: pcf-install
+  - get: bit-bucket
+    passed: [config-opsman-director]
   - task: deploy-director
-    file: pcf-install/apply-changes/task.yml
+    file: bit-bucket/apply-changes/task.yml
     params:
       OPSMAN_DOMAIN_OR_IP_ADDRESS: {{opsman_domain_or_ip_address}}
       OPSMAN_CLIENT_ID: ""

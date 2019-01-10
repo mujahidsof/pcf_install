@@ -7,7 +7,7 @@ image_resource:
     repository: pcfnorm/rootfs
 
 inputs:
-  - name: pcf-install
+  - name: bit-bucket
 params:
   OPSMAN_CLIENT_ID:
   OPSMAN_CLIENT_SECRET:
@@ -16,4 +16,4 @@ params:
   OPSMAN_DOMAIN_OR_IP_ADDRESS:
 
 run:
-  path: pcf-install/apply-changes/task.sh
+  path: bit-bucket/apply-changes/task.sh
